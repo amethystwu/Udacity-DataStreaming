@@ -1,0 +1,18 @@
+cd producer; python simulator.py
+cd consumer; faust -A faust_stream worker -l info
+python ksql.py
+python server.py
+
+kafka-topics --list --zookeeper localhost:2181
+kafka-avro-console-consumer --topic org.chicago.cta.weather --from-beginning --bootstrap-server localhost:9092 --max-messages 10
+kafka-console-consumer --topic org.chicago.cta.stations --from-beginning --bootstrap-server localhost:9092 --max-messages 10
+kafka-console-consumer --topic org.chicago.cta.station.arrivals.43rd --from-beginning --bootstrap-server localhost:9092 --max-messages 10
+kafka-avro-console-consumer --topic org.chicago.cta.turnstile --from-beginning --bootstrap-server localhost:9092 --max-messages 10
+kafka-console-consumer --topic org.chicago.cta.stations.table.v1 --from-beginning --bootstrap-server localhost:9092 --max-messages 10
+
+ksql 
+select * from turnstile;
+select * from turnstile_summary;
+
+zip -r project.zip .
+https://knowledge.udacity.com/questions/424182
