@@ -10,6 +10,9 @@ kafka-console-consumer --topic org.chicago.cta.station.arrivals.43rd --from-begi
 kafka-avro-console-consumer --topic org.chicago.cta.turnstile --from-beginning --bootstrap-server localhost:9092 --max-messages 10
 kafka-console-consumer --topic org.chicago.cta.stations.table.v1 --from-beginning --bootstrap-server localhost:9092 --max-messages 10
 
+
+kafka-console-consumer --topic stedi-events --from-beginning --bootstrap-server localhost:9092
+kafka-console-consumer --topic stedi-score --from-beginning --bootstrap-server localhost:9092
 ksql 
 select * from turnstile;
 select * from turnstile_summary;
